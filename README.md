@@ -63,11 +63,11 @@ lora_r 8
 lora_alpha 16 
 lora_dropout 0.1
 
-&emsp;&emsp;其中比較需要注意的是epoch、learning rate、dropout。
+其中比較需要注意的是epoch、learning rate、dropout。
 
-&emsp;&emsp;首先是epoch，即使是用到RTX3090，訓練一個epoch也大概需要用約4小時，非常花費時間，而且當epoch不夠的時候會發現訓練出來的模型沒辦法穩定輸出1\~4的數字，造成答案的準確度非常低(大約0.25)，因此為了確保輸出結果保持在1\~4，我有在generate.py中增加判斷式，如果發現輸出的值不是1\~4的話會隨機生成1\~4作為結果，而最終epoch=4的模型是可以穩定輸出1\~4的，不需要隨機。
+首先是epoch，即使是用到RTX3090，訓練一個epoch也大概需要用約4小時，非常花費時間，而且當epoch不夠的時候會發現訓練出來的模型沒辦法穩定輸出1\~4的數字，造成答案的準確度非常低(大約0.25)，因此為了確保輸出結果保持在1\~4，我有在generate.py中增加判斷式，如果發現輸出的值不是1\~4的話會隨機生成1\~4作為結果，而最終epoch=4的模型是可以穩定輸出1\~4的，不需要隨機。
 
-&emsp;&emsp;接下來是learning rate，因為本次主要做的事情是finetune，所以learning rate不需要太大，如果把learning rate調大的話反而會讓模型更難收斂，因此我最後採用的是1e-4。
+接下來是learning rate，因為本次主要做的事情是finetune，所以learning rate不需要太大，如果把learning rate調大的話反而會讓模型更難收斂，因此我最後採用的是1e-4。
 
-&emsp;&emsp;最後是dropout，原本預設是0.05，但我發現在0.1的情況下模型的結果表現得更不錯，因此最後選擇了0.1。
+最後是dropout，原本預設是0.05，但我發現在0.1的情況下模型的結果表現得更不錯，因此最後選擇了0.1。
 
