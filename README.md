@@ -19,6 +19,7 @@ pip install scipy
 * step 3: 資料前處理
 
 移動到deep_learning_HW3/
+
 執行test_set_process.py把AI1000.xlsx變成answr.josn(測試資料)
 ```
 python train_set_process.py
@@ -38,6 +39,8 @@ python test_set_process.py
 * step 5: 訓練模型
 
 移動到alpaca-lora/
+
+開始訓練
 ```
 bash train.sh
 ```
@@ -50,18 +53,29 @@ python generate.py --load_8bit --base_model 'decapoda-research/llama-7b-hf'  --l
 * 結果與討論
 
 public score: 0.46
+
 private score: 0.49714
 
 本次模型使用RTX3090來進行訓練，最後finetune之參數為：
+
 batch_size 256
+
 micro_batch_size 1 
+
 num_epochs 4 
+
 learning_rate 1e-4 
+
 cutoff_len 1600 
+
 val_set_size 1000 
+
 lora_r 8 
+
 lora_alpha 16 
+
 lora_dropout 0.1
+
 
 其中比較需要注意的是epoch、learning rate、dropout。
 
